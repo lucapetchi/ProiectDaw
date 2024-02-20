@@ -1,0 +1,15 @@
+﻿<h2>Task-uri</h2>
+
+<br />
+
+@foreach(var task in ViewBag.Tasks)
+{
+	<p>@task.Name</p>
+	<p>@task.Id</p>
+	<p>@task.Deadline</p>
+	<p>@task.Status</p>
+	
+}
+<br />
+
+<a href ="/Task/Add">Add</a>
