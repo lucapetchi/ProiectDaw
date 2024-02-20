@@ -1,16 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Proiect.Models.Base;
 
 namespace Proiect.Models
 {
-	public class Project
+	public class Project: BaseEntity
 	{
-		[Key]
-		public int ProjectId { get; set; }
+		
 
 		[Column(TypeName = "nvarchar(50)")]
 		[Required(ErrorMessage = "Numele proiectului este obligatoriu")]
-		public string Name { get; set; }
+		public string? Name { get; set; }
 
 		[Column(TypeName = "nvarchar(200)")]
 		[Required(ErrorMessage = "Descrierea este obligatorie")]

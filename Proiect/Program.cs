@@ -1,6 +1,9 @@
 
 using Microsoft.EntityFrameworkCore;
+using Proiect.Repositories;
 using Proiect.Data;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,14 +12,17 @@ builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
-var app = builder.Build();
 
+builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+var app = builder.Build();
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+	app.UseSwagger();
+	app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
