@@ -1,11 +1,13 @@
-﻿namespace Proiect.Models
+﻿using Proiect.Models.Base;
+
+namespace Proiect.Models
 {
-	public class UserProject
+	public class UserProject:BaseEntity
 	{
-		public string UserId { get; set; }
+		public Guid UserId { get; set; }
 		public User User { get; set; }
 
-		public int ProjectId { get; set; }
+		public Guid ProjectId { get; set; }
 		public Project Project { get; set; }
 	}
 }

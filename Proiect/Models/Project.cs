@@ -15,9 +15,9 @@ namespace Proiect.Models
 		[Column(TypeName = "nvarchar(200)")]
 		[Required(ErrorMessage = "Descrierea este obligatorie")]
 		public string? Description { get; set; }
-		public int? organizer_id { get; set; }
+		public Guid? organizer_id { get; set; }
 		public virtual ICollection<Task> Tasks { get; set; }
-		public virtual ICollection<User>? Users { get; set; }
+		public virtual ICollection<UserProject> Users { get; set; }
 
 	}
 }

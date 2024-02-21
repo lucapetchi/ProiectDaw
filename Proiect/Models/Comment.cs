@@ -7,7 +7,7 @@ namespace Proiect.Models
 		public string? Content { get; set; }
 		public DateTime Date { get; set; }
 
-		public int TaskId { get; set; }
+		public Guid Taskid { get; set; }
 		public Task? task { get; set; }
 	}
 }
