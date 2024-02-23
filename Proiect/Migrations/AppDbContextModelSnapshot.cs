@@ -80,20 +80,14 @@ namespace Proiect.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("ProjectId")
-                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ProjectId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Tasks");
                 });
@@ -104,6 +98,12 @@ namespace Proiect.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
@@ -111,21 +111,15 @@ namespace Proiect.Migrations
 
             modelBuilder.Entity("Proiect.Models.UserProject", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ProjectId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
+                    b.HasKey("UserId", "ProjectId");
 
                     b.HasIndex("ProjectId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("UserProjects");
                 });
@@ -145,17 +139,9 @@ namespace Proiect.Migrations
                 {
                     b.HasOne("Proiect.Models.Project", "Project")
                         .WithMany("Tasks")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Proiect.Models.User", "User")
-                        .WithMany("Tasks")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("ProjectId");
 
                     b.Navigation("Project");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Proiect.Models.UserProject", b =>
@@ -192,8 +178,6 @@ namespace Proiect.Migrations
             modelBuilder.Entity("Proiect.Models.User", b =>
                 {
                     b.Navigation("Projects");
-
-                    b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618
         }

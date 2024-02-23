@@ -14,6 +14,7 @@ namespace Proiect.Repositories.GenericRepository
 			_dbcontext = tableContext;
 			dentity = _dbcontext.Set<TEntity>();
 		}
+
 		public List<TEntity> GetAll()
 		{
 			return dentity.AsNoTracking().ToList();

@@ -17,6 +17,7 @@ namespace Proiect.Data
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			
 			//one-to-one 
 
 			modelBuilder.Entity<Models.Task>()
@@ -27,17 +28,20 @@ namespace Proiect.Data
 			//one-to-many 
 
 			modelBuilder.Entity<Project>()
-				.HasMany(t => t.Tasks)
-				.WithOne(p => p.Project)
+				.HasMany(p => p.Tasks)
+				.WithOne(t => t.Project)
 				.HasForeignKey(t => t.ProjectId);
 
 
 			base.OnModelCreating(modelBuilder);
 
 			
-;
+
 
 			//one-to-many for many-to-many
+
+			modelBuilder.Entity<UserProject>()
+			  .HasKey(e => new { e.UserId, e.ProjectId });
 			modelBuilder.Entity<UserProject>()
 					.HasOne(usp => usp.User)
 					.WithMany(m => m.Projects)

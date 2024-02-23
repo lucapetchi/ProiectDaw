@@ -1,8 +1,8 @@
-﻿using Proiect.Models.Base;
+﻿
 
 namespace Proiect.Models
 {
-	public class UserProject:BaseEntity
+	public class UserProject
 	{
 		public Guid UserId { get; set; }
 		public User User { get; set; }
